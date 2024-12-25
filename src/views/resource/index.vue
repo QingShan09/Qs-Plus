@@ -44,7 +44,9 @@
         <div class="content">
           <h3>问题反馈</h3>
           <p>提交 Bug 或功能建议</p>
-          <qs-button type="primary" icon="mdi:open-in-new">去反馈</qs-button>
+          <qs-button type="primary" icon="mdi:open-in-new" @click="openLink('https://github.com/QingShan09/Qs-Plus/issues')">
+            去反馈
+          </qs-button>
         </div>
       </div>
 
@@ -105,6 +107,10 @@
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
+
+const openLink = (url: string) => {
+  window.open(url, '_blank')
+}
 </script>
 
 <style scoped lang="scss">

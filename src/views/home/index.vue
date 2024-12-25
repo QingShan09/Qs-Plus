@@ -18,11 +18,11 @@
           </qs-button>
         </div>
         <div class="github-stats">
-          <a href="https://github.com/your-repo" target="_blank" class="github-stat">
+          <a href="https://github.com/QingShan09/Qs-Plus" target="_blank" class="github-stat">
             <Icon icon="mdi:star" />
             <span>Stars</span>
           </a>
-          <a href="https://github.com/your-repo/issues" target="_blank" class="github-stat">
+          <a href="https://github.com/QingShan09/Qs-Plus" target="_blank" class="github-stat">
             <Icon icon="mdi:source-fork" />
             <span>Forks</span>
           </a>
@@ -47,7 +47,7 @@
                   <Icon icon="mdi:language-typescript" />
                 </div>
                 <h3>TypeScript 支持</h3>
-                <p>使用 TypeScript 开发，提供完整的类型定义，让开发更加智能和安全。</p>
+                <p>使用 TypeScript 开发，提供完整的类型定义，让开发智能和安全。</p>
                 <div class="card-bg"></div>
               </div>
             </div>
@@ -158,7 +158,7 @@ app.use(QsPlus)</code></pre>
         <div class="step">
           <div class="step-header">
             <div class="step-number">03</div>
-            <h3>开始使用</h3>
+            <h3>开���使用</h3>
           </div>
           <div class="code-block">
             <div class="code-header">
@@ -202,7 +202,7 @@ app.use(QsPlus)</code></pre>
           <h3>前端开发工程师</h3>
           <p>热爱开源，专注于 Vue.js 生态系统，致力于为开发者提供更好的开发工具。</p>
           <div class="social-links">
-            <a href="https://github.com/your-github" target="_blank">
+            <a href="https://github.com/QingShan09" target="_blank">
               <Icon icon="mdi:github" />
             </a>
             <a href="https://twitter.com/your-twitter" target="_blank">

@@ -1,14 +1,19 @@
-export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info'
+export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'text' | 'link'
 export type ButtonSize = 'large' | 'default' | 'small'
+export type ButtonShape = 'circle' | 'round'
 
 export const buttonProps = {
   type: {
-    type: String,
+    type: String as () => ButtonType,
     default: 'default'
   },
   size: {
-    type: String,
+    type: String as () => ButtonSize,
     default: 'default'
+  },
+  shape: {
+    type: String as () => ButtonShape,
+    default: ''
   },
   disabled: {
     type: Boolean,

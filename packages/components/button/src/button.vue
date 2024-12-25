@@ -7,14 +7,20 @@
       {
         'is-disabled': disabled,
         'is-loading': loading,
+        'is-round': shape === 'round',
+        'is-circle': shape === 'circle'
       }
     ]"
     :disabled="disabled || loading"
     @click="handleClick"
   >
-    <i v-if="loading" class="qs-icon-loading"></i>
-    <i v-if="icon && !loading" :class="icon"></i>
-    <span v-if="$slots.default">
+    <span v-if="loading" class="loading-icon">
+      <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" />
+      </svg>
+    </span>
+    <Icon v-else-if="icon" :icon="icon" />
+    <span v-if="$slots.default" :class="{ 'has-icon': icon || loading }">
       <slot></slot>
     </span>
   </button>
@@ -22,10 +28,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { Icon } from '@iconify/vue'
 import { buttonProps } from './button'
 
 export default defineComponent({
   name: 'QsButton',
+  components: {
+    Icon
+  },
   props: buttonProps,
   emits: ['click'],
   setup(props, { emit }) {
@@ -60,6 +70,11 @@ export default defineComponent({
   border-radius: 4px;
   border: 1px solid #dcdfe6;
   background-color: #fff;
+  gap: 6px;
+
+  .iconify {
+    font-size: 16px;
+  }
 
   &:hover,
   &:focus {
@@ -120,6 +135,35 @@ export default defineComponent({
     }
   }
 
+  &--text {
+    border-color: transparent;
+    color: #409eff;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover,
+    &:focus {
+      color: #66b1ff;
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+
+  &--link {
+    border-color: transparent;
+    color: #409eff;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: #66b1ff;
+    }
+  }
+
   &.is-disabled,
   &.is-disabled:hover {
     color: #c0c4cc;
@@ -132,17 +176,89 @@ export default defineComponent({
     position: relative;
     pointer-events: none;
 
-    &:before {
-      pointer-events: none;
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: -1px;
-      right: -1px;
-      bottom: -1px;
-      border-radius: inherit;
-      background-color: rgba(255, 255, 255, 0.35);
+    .loading-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
+
+    .circular {
+      width: 14px;
+      height: 14px;
+      animation: loading-rotate 2s linear infinite;
+    }
+
+    .path {
+      stroke-dasharray: 90,150;
+      stroke-dashoffset: 0;
+      stroke-width: 2;
+      stroke: currentColor;
+      stroke-linecap: round;
+      animation: loading-dash 1.5s ease-in-out infinite;
+    }
+  }
+
+  &.is-round {
+    border-radius: 20px;
+    padding: 8px 20px;
+  }
+
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+    width: 32px;
+    height: 32px;
+  }
+
+  &--large {
+    height: 40px;
+    padding: 12px 20px;
+    font-size: 16px;
+
+    &.is-circle {
+      width: 40px;
+      height: 40px;
+    }
+
+    .iconify {
+      font-size: 18px;
+    }
+  }
+
+  &--small {
+    height: 24px;
+    padding: 5px 12px;
+    font-size: 12px;
+
+    &.is-circle {
+      width: 24px;
+      height: 24px;
+    }
+
+    .iconify {
+      font-size: 14px;
+    }
+  }
+}
+
+@keyframes loading-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90,150;
+    stroke-dashoffset: -40px;
+  }
+  100% {
+    stroke-dasharray: 90,150;
+    stroke-dashoffset: -120px;
   }
 }
 </style> 

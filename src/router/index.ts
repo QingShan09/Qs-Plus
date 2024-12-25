@@ -33,6 +33,12 @@ const routes = [
         component: () => import('../views/components/button.vue'),
         name: 'Button',
         meta: { title: 'Button 按钮' }
+      },
+      {
+        path: 'radio',
+        component: () => import('../views/components/radio.vue'),
+        name: 'Radio',
+        meta: { title: 'Radio 单选框' }
       }
       // 其他组件路由将在组件开发完成后添加
     ]

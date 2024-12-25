@@ -43,8 +43,8 @@
               </div>
             </div>
           </div>
-          <div class="version">v1.0.0</div>
-          <a href="https://github.com/yourusername/qs-plus" target="_blank" class="github-link">
+          <span class="version">v1.0.0</span>
+          <a href="https://github.com/QingShan09/Qs-Plus" target="_blank" class="github-link">
             <Icon icon="mdi:github" class="github-icon" />
           </a>
         </div>
@@ -109,7 +109,8 @@ const menuGroups = [
   {
     title: '基础组件',
     items: [
-      { title: 'Button 按钮', path: '/components/button' }
+      { title: 'Button 按钮', path: '/components/button' },
+      { title: 'Radio 单选框', path: '/components/radio' }
       // 其他组件将在开发完成后添加
     ]
   }
@@ -118,6 +119,7 @@ const menuGroups = [
 // 搜索数据
 const searchData = [
   { title: 'Button 按钮', path: '/components/button', type: 'component', description: '常用的操作按钮' },
+  { title: 'Radio 单选框', path: '/components/radio', type: 'component', description: '在一组备选项中进行单选' },
   { title: 'Icon 图标', path: '/components/icon', type: 'component', description: '语义化的矢量图形' },
   { title: '安装', path: '/guide#installation', type: 'guide', description: '安装说明' },
   { title: '快速开始', path: '/guide#usage', type: 'guide', description: '快速上手指南' },
