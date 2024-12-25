@@ -58,35 +58,250 @@ app.mount('#app')
 
 ## 📦 组件列表
 
-- 通用
-  - Button 按钮
-  - Icon 图标
-  - Link 链接
+### 🎯 通用组件
+<table>
+  <thead>
+    <tr>
+      <th>组件名称</th>
+      <th>描述</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Button 按钮</td>
+      <td>常用的操作按钮</td>
+      <td>
+        <ul>
+          <li>支持多种类型：primary、success、warning、danger</li>
+          <li>支持图标按钮和文字按钮</li>
+          <li>可自定义大小和形状</li>
+          <li>支持加载状态和禁用状态</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Icon 图标</td>
+      <td>语义化的矢量图形</td>
+      <td>
+        <ul>
+          <li>基于 Material Design Icons</li>
+          <li>支持自定义颜色和大小</li>
+          <li>提供丰富的图标集合</li>
+          <li>支持动画效果</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Link 链接</td>
+      <td>文字超链接</td>
+      <td>
+        <ul>
+          <li>支持下划线和悬浮效果</li>
+          <li>多种状态：默认、主要、成功、警告、危险</li>
+          <li>支持禁用状态</li>
+          <li>可配置图标</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- 布局
-  - Grid 栅格
-  - Layout 布局
-  - Space 间距
+### 📐 布局组件
+<table>
+  <thead>
+    <tr>
+      <th>组件名称</th>
+      <th>描述</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Grid 栅格</td>
+      <td>24 栅格系统</td>
+      <td>
+        <ul>
+          <li>支持响应式布局</li>
+          <li>可设置间距（gutter）</li>
+          <li>支持 flex 布局</li>
+          <li>可设置偏移量</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Layout 布局</td>
+      <td>页面整体布局</td>
+      <td>
+        <ul>
+          <li>支持上中下布局</li>
+          <li>支持侧边栏</li>
+          <li>可自定义宽度和高度</li>
+          <li>响应式收缩</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Space 间距</td>
+      <td>元素间距组件</td>
+      <td>
+        <ul>
+          <li>支持水平和垂直方向</li>
+          <li>可自定义间距大小</li>
+          <li>支持环绕模式</li>
+          <li>支持对齐方式设置</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- 表单
-  - Input 输入框
-  - Select 选择器
-  - Radio 单选框
-  - Checkbox 复选框
-  - Switch 开关
-  - Slider 滑块
+### 📝 表单组件
+<table>
+  <thead>
+    <tr>
+      <th>组件名称</th>
+      <th>描述</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Input 输入框</td>
+      <td>文本输入框</td>
+      <td>
+        <ul>
+          <li>支持多种类型：text、password、number等</li>
+          <li>支持前缀和后缀图标</li>
+          <li>可清空和密码显示切换</li>
+          <li>支持输入限制和验证</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Select 选择器</td>
+      <td>下拉选择器</td>
+      <td>
+        <ul>
+          <li>单选和多选模式</li>
+          <li>支持选项分组</li>
+          <li>可搜索和远程搜索</li>
+          <li>支持自定义选项内容</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Switch 开关</td>
+      <td>开关选择器</td>
+      <td>
+        <ul>
+          <li>支持自定义颜色</li>
+          <li>可设置加载状态</li>
+          <li>支持文字和图标</li>
+          <li>支持禁用状态</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- 数据展示
-  - Table 表格
-  - Tag 标签
-  - Progress 进度条
-  - Tree 树形控件
+### 📊 数据展示
+<table>
+  <thead>
+    <tr>
+      <th>组件名称</th>
+      <th>描述</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Table 表格</td>
+      <td>数据表格</td>
+      <td>
+        <ul>
+          <li>支持固定表头和列</li>
+          <li>支持排序和筛选</li>
+          <li>自定义单元格内容</li>
+          <li>支持展开行和树形数据</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Tag 标签</td>
+      <td>标记和分类</td>
+      <td>
+        <ul>
+          <li>多种预设颜色</li>
+          <li>可关闭和动态编辑</li>
+          <li>支持圆角设置</li>
+          <li>支持图标</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Progress 进度条</td>
+      <td>进度显示</td>
+      <td>
+        <ul>
+          <li>支持线形和环形</li>
+          <li>自定义颜色和渐变</li>
+          <li>支持进度格式化</li>
+          <li>支持动画效果</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-- 反馈
-  - Alert 警告
-  - Message 消息
-  - Modal 对话框
-  - Notification 通知
+### 💫 反馈组件
+<table>
+  <thead>
+    <tr>
+      <th>组件名称</th>
+      <th>描述</th>
+      <th>特点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alert 警告</td>
+      <td>警告提示</td>
+      <td>
+        <ul>
+          <li>四种主要类型</li>
+          <li>可关闭和自定义关闭按钮</li>
+          <li>支持图标和描述</li>
+          <li>支持自定义图标</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Message 消息</td>
+      <td>全局提示</td>
+      <td>
+        <ul>
+          <li>支持多种类型</li>
+          <li>可设置显示时长</li>
+          <li>支持手动关闭</li>
+          <li>支持自定义内容</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Modal 对话框</td>
+      <td>模态对话框</td>
+      <td>
+        <ul>
+          <li>支持自定义内容</li>
+          <li>多种预设类型</li>
+          <li>支持异步关闭</li>
+          <li>可拖拽和全屏</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## 🎨 主题定制
 
@@ -118,7 +333,7 @@ npm run dev
 npm run build
 ```
 
-## ��� 文档
+## 📄 文档
 
 访问 [QS Plus 文档](http://your-domain.com) 查看详细文档。
 
