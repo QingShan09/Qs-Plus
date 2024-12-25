@@ -11,7 +11,7 @@
   <a href="https://www.npmjs.com/package/qs-plus">
     <img src="https://img.shields.io/npm/dm/qs-plus.svg" alt="Downloads">
   </a>
-  <a href="https://github.com/your-username/qs-plus/blob/main/LICENSE">
+  <a href="https://github.com/QingShan09/Qs-Plus/blob/main/LICENSE">
     <img src="https://img.shields.io/npm/l/qs-plus.svg" alt="License">
   </a>
 </p>
@@ -73,7 +73,7 @@ app.mount('#app')
       <td>常用的操作按钮</td>
       <td>
         <ul>
-          <li>支持多种类型：primary、success、warning、danger</li>
+          <li>支��多种类型：primary、success、warning、danger</li>
           <li>支持图标按钮和文字按钮</li>
           <li>可自定义大小和形状</li>
           <li>支持加载状态和禁用状态</li>
@@ -305,7 +305,7 @@ app.mount('#app')
 
 ## 🎨 主题定制
 
-QS Plus 提供了灵活的主题配置，你可以通过修改 CSS 变量来自定义主题：
+QS Plus 提供了灵活的主题配置，你可以通过修改 CSS 变量来自定义���题：
 
 ```css
 :root {
@@ -321,7 +321,7 @@ QS Plus 提供了灵活的主题配置，你可以通过修改 CSS 变量来自�
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/qs-plus.git
+git clone https://github.com/QingShan09/Qs-Plus.git
 
 # 安装依赖
 npm install
@@ -335,12 +335,12 @@ npm run build
 
 ## 📄 文档
 
-访问 [QS Plus 文档](http://your-domain.com) 查看详细文档。
+访问 [QS Plus 文档](https://github.com/QingShan09/Qs-Plus) 查看详细文档。
 
 ## 🤝 贡献
 
-欢迎提交 Issue 或 Pull Request！
+欢迎提交 [Issue](https://github.com/QingShan09/Qs-Plus/issues) 或 [Pull Request](https://github.com/QingShan09/Qs-Plus/pulls)！
 
 ## 📄 许可证
 
-[MIT](LICENSE) 
+[MIT](https://github.com/QingShan09/Qs-Plus/blob/main/LICENSE) 
