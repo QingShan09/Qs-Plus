@@ -1,0 +1,293 @@
+:root {
+  // 主题色 - 清新渐变配色
+  --el-gradient-success: linear-gradient(135deg, rgba(6, 193, 103, 0.9) 0%, rgba(46, 211, 133, 0.9) 100%);
+  --el-gradient-warning: linear-gradient(135deg, rgba(250, 173, 20, 0.9) 0%, rgba(255, 197, 84, 0.9) 100%);
+  --el-gradient-error: linear-gradient(135deg, rgba(255, 77, 79, 0.9) 0%, rgba(255, 105, 107, 0.9) 100%);
+  --el-gradient-info: linear-gradient(135deg, rgba(24, 144, 255, 0.9) 0%, rgba(64, 169, 255, 0.9) 100%);
+
+  // 文字颜色
+  --el-text-color-white: rgba(255, 255, 255, 0.95);
+  --el-text-color-secondary: rgba(255, 255, 255, 0.7);
+}
+
+.qs-message-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  width: fit-content;
+  max-width: 100%;
+  z-index: 9999;
+  
+  &-top {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-top-left {
+    top: 20px;
+    left: 20px;
+  }
+
+  &-top-right {
+    top: 20px;
+    right: 20px;
+  }
+
+  &-bottom {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-bottom-left {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  &-bottom-right {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+.qs-message {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  margin-bottom: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.02),
+    0 4px 8px -2px rgba(0, 0, 0, 0.04),
+    0 8px 24px -4px rgba(0, 0, 0, 0.06);
+  pointer-events: all;
+  min-width: 320px;
+  max-width: 480px;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: currentColor;
+    border-radius: 0 4px 4px 0;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 
+      0 4px 6px rgba(0, 0, 0, 0.02),
+      0 6px 12px -2px rgba(0, 0, 0, 0.04),
+      0 12px 32px -4px rgba(0, 0, 0, 0.08);
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    flex-shrink: 0;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: -0.2px;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-left: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.35);
+    transition: all 0.2s;
+    flex-shrink: 0;
+    opacity: 0.6;
+    backdrop-filter: blur(4px);
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+      color: rgba(0, 0, 0, 0.8);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  // 类型样式
+  &--success {
+    color: #10b981;
+    background: linear-gradient(
+      145deg,
+      rgba(16, 185, 129, 0.05) 0%,
+      rgba(255, 255, 255, 0.98) 100%
+    );
+
+    .qs-message__text {
+      background: linear-gradient(90deg, #10b981 -10%, #1a1a1a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+  }
+
+  &--warning {
+    color: #f59e0b;
+    background: linear-gradient(
+      145deg,
+      rgba(245, 158, 11, 0.05) 0%,
+      rgba(255, 255, 255, 0.98) 100%
+    );
+
+    .qs-message__text {
+      background: linear-gradient(90deg, #f59e0b -10%, #1a1a1a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+  }
+
+  &--error {
+    color: #ef4444;
+    background: linear-gradient(
+      145deg,
+      rgba(239, 68, 68, 0.05) 0%,
+      rgba(255, 255, 255, 0.98) 100%
+    );
+
+    .qs-message__text {
+      background: linear-gradient(90deg, #ef4444 -10%, #1a1a1a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+  }
+
+  &--info {
+    color: #3b82f6;
+    background: linear-gradient(
+      145deg,
+      rgba(59, 130, 246, 0.05) 0%,
+      rgba(255, 255, 255, 0.98) 100%
+    );
+
+    .qs-message__text {
+      background: linear-gradient(90deg, #3b82f6 -10%, #1a1a1a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    min-width: auto;
+    width: calc(100vw - 32px);
+    margin: 0 0 12px;
+    padding: 12px 20px;
+    border-radius: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// 动画
+.qs-message-fade-enter-active {
+  animation: message-slide-down 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.qs-message-fade-leave-active {
+  animation: message-slide-up 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes message-slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  70% {
+    transform: translateY(5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes message-slide-up {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+
+// 底部位置动画
+.qs-message-container-bottom,
+.qs-message-container-bottom-left,
+.qs-message-container-bottom-right {
+  .qs-message-fade-enter-active {
+    animation: message-slide-up-bottom 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .qs-message-fade-leave-active {
+    animation: message-slide-down-bottom 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes message-slide-up-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes message-slide-down-bottom {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+} 

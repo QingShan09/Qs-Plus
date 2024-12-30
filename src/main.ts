@@ -1,24 +1,37 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { router } from './router'
+
+// highlight.js
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import typescript from 'highlight.js/lib/languages/typescript'
+import xml from 'highlight.js/lib/languages/xml'
+import scss from 'highlight.js/lib/languages/scss'
+import 'highlight.js/styles/atom-one-dark.css'
+
+// 注册语言
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('typescript', typescript)
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('vue', xml)
+hljs.registerLanguage('scss', scss)
+
+// 导入组件库
+import QsPlus from '../packages'
+
+// 导入样式
+import './assets/styles/index.scss'
+
+// 导入高亮指令
 import highlight from './directives/highlight'
 
-// 引入代码高亮样式
-import 'highlight.js/styles/github.css'
-// 引入组件库
-import QsPlus from '../packages'
-// 引入组件库样式
-// import '../packages/theme-chalk/src/index.scss'
-
-// 创建应用实例
 const app = createApp(App)
 
-// 注册路由
-app.use(router)
-// 注册组件库
-app.use(QsPlus)
-// 注册代码高亮指令
-app.directive('highlightjs', highlight)
+// 注册高亮指令
+app.directive('highlight', highlight)
 
-// 挂载应用
+app.use(router)
+app.use(QsPlus)
+
 app.mount('#app')

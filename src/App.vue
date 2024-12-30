@@ -1,6 +1,11 @@
 <template>
-  <router-view></router-view>
+  <router-view />
+  <back-to-top />
 </template>
+
+<script setup lang="ts">
+import BackToTop from '@/components/back-to-top/back-to-top.vue'
+</script>
 
 <style>
 :root {

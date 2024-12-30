@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../layout/index.vue'
 
 const routes = [
   {
     path: '/',
-    component: () => import('../views/home/index.vue'),
+    component: () => import('@/views/home/index.vue'),
     name: 'Home',
     meta: { title: '首页' }
   },
@@ -14,7 +14,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('../views/guide/index.vue'),
+        component: () => import('@/views/guide/index.vue'),
         name: 'Guide',
         meta: { title: '指南' }
       }
@@ -23,24 +23,62 @@ const routes = [
   {
     path: '/components',
     component: Layout,
+    redirect: '/components/button',
     children: [
       {
-        path: '',
-        redirect: '/components/button'
-      },
-      {
         path: 'button',
-        component: () => import('../views/components/button.vue'),
+        component: () => import('@/views/components/button.vue'),
         name: 'Button',
         meta: { title: 'Button 按钮' }
       },
       {
+        path: 'icon',
+        component: () => import('@/views/components/icon.vue'),
+        name: 'Icon',
+        meta: { title: 'Icon 图标' }
+      },
+      {
+        path: 'input',
+        component: () => import('@/views/components/input.vue'),
+        name: 'Input',
+        meta: { title: 'Input 输入框' }
+      },
+      {
         path: 'radio',
-        component: () => import('../views/components/radio.vue'),
+        component: () => import('@/views/components/radio.vue'),
         name: 'Radio',
         meta: { title: 'Radio 单选框' }
-      }
-      // 其他组件路由将在组件开发完成后添加
+      },
+      {
+        path: 'checkbox',
+        component: () => import('@/views/components/checkbox.vue'),
+        name: 'Checkbox',
+        meta: { title: 'Checkbox 多选框' }
+      },
+      {
+        path: 'switch',
+        component: () => import('@/views/components/switch.vue'),
+        name: 'Switch',
+        meta: { title: 'Switch 开关' }
+      },
+      {
+        path: 'select',
+        component: () => import('@/views/components/select.vue'),
+        name: 'Select',
+        meta: { title: 'Select 选择器' }
+      },
+      {
+        path: 'message',
+        component: () => import('@/views/components/message.vue'),
+        name: 'Message',
+        meta: { title: 'Message 消息提示' }
+      },
+      // {
+      //   path: 'table',
+      //   component: () => import('@/views/components/table.vue'),
+      //   name: 'Table',
+      //   meta: { title: 'Table 表格' }
+      // }
     ]
   },
   {
@@ -49,7 +87,7 @@ const routes = [
     children: [
       {
         path: '',
-        component: () => import('../views/resource/index.vue'),
+        component: () => import('@/views/resource/index.vue'),
         name: 'Resource',
         meta: { title: '资源' }
       }
@@ -58,6 +96,6 @@ const routes = [
 ]
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 }) 

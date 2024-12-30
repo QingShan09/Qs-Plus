@@ -24,9 +24,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "packages/*": ["packages/*"]
+      "@qs-plus/components": ["packages/components/types"],
+      "@qs-plus/components/*": ["packages/components/*"],
+      "@qs-plus/utils": ["packages/utils"],
+      "@qs-plus/utils/*": ["packages/utils/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "packages/**/*.ts", "packages/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx", "packages/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
-} 
+}

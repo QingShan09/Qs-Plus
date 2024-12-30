@@ -1,0 +1,67 @@
+// 基础颜色
+:root {
+  // 主色
+  --qs-primary-color: rgb(64, 158, 255);
+  --qs-primary-color-light: #ecf5ff;
+  --qs-primary-color-lighter: #f5f7fa;
+  --qs-primary-color-hover: #66b1ff;
+  --qs-primary-rgb: 64, 158, 255;
+
+  // 功能色
+  --qs-success-color: rgb(103, 194, 58);
+  --qs-success-rgb: 103, 194, 58;
+  --qs-warning-color: rgb(230, 162, 60);
+  --qs-warning-rgb: 230, 162, 60;
+  --qs-danger-color: rgb(245, 108, 108);
+  --qs-danger-rgb: 245, 108, 108;
+  --qs-info-color: rgb(144, 147, 153);
+  --qs-info-rgb: 144, 147, 153;
+
+  // 文字颜色
+  --qs-text-color: rgb(48, 49, 51);
+  --qs-text-color-secondary: rgb(144, 147, 153);
+  --qs-text-color-placeholder: rgb(192, 196, 204);
+
+  // 边框颜色
+  --qs-border-color: rgb(220, 223, 230);
+  --qs-border-color-light: rgb(228, 231, 237);
+  --qs-border-color-lighter: rgb(235, 238, 245);
+  --qs-border-color-extra-light: rgb(242, 246, 252);
+
+  // 背景颜色
+  --qs-bg-color: rgb(255, 255, 255);
+  --qs-bg-color-page: rgb(242, 243, 245);
+  --qs-hover-bg: rgb(245, 247, 250);
+
+  // 禁用状态
+  --qs-disabled-bg: rgb(245, 247, 250);
+  --qs-disabled-border: rgb(228, 231, 237);
+  --qs-disabled-text: rgb(192, 196, 204);
+
+  // 滚动条
+  --qs-scrollbar-thumb: rgb(192, 196, 204);
+  --qs-scrollbar-track: rgb(245, 247, 250);
+
+  // 字体
+  --qs-font-size-xs: 12px;
+  --qs-font-size-sm: 13px;
+  --qs-font-size: 14px;
+  --qs-font-size-lg: 16px;
+  --qs-font-size-xl: 18px;
+
+  // 圆角
+  --qs-border-radius: 4px;
+  --qs-border-radius-sm: 2px;
+  --qs-border-radius-lg: 8px;
+  --qs-border-radius-round: 20px;
+  --qs-border-radius-circle: 50%;
+
+  // 阴影
+  --qs-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  --qs-box-shadow-light: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+  --qs-box-shadow-dark: 0 2px 16px 0 rgba(0, 0, 0, 0.16);
+
+  // 过渡
+  --qs-transition-duration: 0.2s;
+  --qs-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+} 

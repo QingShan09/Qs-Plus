@@ -5,167 +5,259 @@
       {
         'is-checked': isChecked,
         'is-disabled': isDisabled,
-        [`qs-radio--${radioSize}`]: radioSize
+        'is-bordered': border && !button,
+        'is-button': button,
+        [`qs-radio--${radioSize}`]: border || button,
+        [`qs-radio--button-${buttonStyle}`]: button
       }
     ]"
+    :style="radioStyle"
   >
-    <span class="qs-radio__input">
+    <span
+      v-if="!button"
+      :class="[
+        'qs-radio__input',
+        {
+          'is-checked': isChecked,
+          'is-disabled': isDisabled
+        }
+      ]"
+    >
       <input
+        ref="radioRef"
+        v-model="currentValue"
         type="radio"
-        :value="value"
+        :class="'qs-radio__original'"
+        :value="label"
+        :name="name || radioGroup?.name"
         :disabled="isDisabled"
-        v-model="model"
-        class="qs-radio__original"
         @change="handleChange"
       >
       <span class="qs-radio__inner"></span>
     </span>
-    <span class="qs-radio__label">
-      <slot></slot>
+    <span v-if="button" class="qs-radio__button-inner">
+      <slot>{{ label }}</slot>
+    </span>
+    <span v-else class="qs-radio__label">
+      <slot>{{ label }}</slot>
     </span>
   </label>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, inject } from 'vue'
-import { radioProps } from './radio'
+<script setup lang="ts">
+import { computed, ref, inject } from 'vue'
+import { radioProps, radioEmits } from './radio'
+import type { RadioValueType } from './radio'
 
-export default defineComponent({
-  name: 'QsRadio',
-  props: radioProps,
-  emits: ['update:modelValue', 'change'],
-  setup(props, { emit }) {
-    const radioGroup = inject('radioGroup', null)
+defineOptions({
+  name: 'QsRadio'
+})
 
-    const isDisabled = computed(() => props.disabled || radioGroup?.disabled)
-    const radioSize = computed(() => props.size || radioGroup?.size || 'default')
+const props = defineProps(radioProps)
+const emit = defineEmits(radioEmits)
 
-    const model = computed({
-      get() {
-        return radioGroup ? radioGroup.modelValue : props.modelValue
-      },
-      set(val) {
-        if (radioGroup) {
-          radioGroup.changeEvent(val)
-        } else {
-          emit('update:modelValue', val)
-        }
-        emit('change', val)
-      }
-    })
+const radioRef = ref<HTMLInputElement>()
 
-    const isChecked = computed(() => model.value === props.value)
+// 注入 radio group 的数据
+const radioGroup = inject<{
+  name: string | undefined
+  modelValue: { value: RadioValueType }
+  size: { value: string }
+  disabled: { value: boolean }
+  textColor: { value: string | undefined }
+  fill: { value: string | undefined }
+  buttonStyle: { value: string }
+} | undefined>('radioGroupKey', undefined)
 
-    const handleChange = () => {
-      emit('change', model.value)
-    }
-
-    return {
-      isDisabled,
-      radioSize,
-      model,
-      isChecked,
-      handleChange
+const currentValue = computed({
+  get() {
+    const val = radioGroup ? radioGroup.modelValue.value : props.modelValue
+    return val ?? ''
+  },
+  set(val: RadioValueType) {
+    if (radioGroup) {
+      radioGroup.modelValue.value = val
+    } else {
+      emit('update:modelValue', val)
     }
   }
 })
+
+const isChecked = computed(() => {
+  return currentValue.value === props.label
+})
+
+const isDisabled = computed(() => {
+  return radioGroup ? radioGroup.disabled.value || props.disabled : props.disabled
+})
+
+const radioSize = computed(() => {
+  return radioGroup ? radioGroup.size.value : props.size
+})
+
+const radioStyle = computed(() => {
+  if (!props.button) return {}
+  
+  const style: Record<string, string> = {}
+  if (isChecked.value) {
+    if (radioGroup?.textColor?.value) {
+      style.color = radioGroup.textColor.value
+    }
+    if (radioGroup?.fill?.value) {
+      style['background-color'] = radioGroup.fill.value
+      style['border-color'] = radioGroup.fill.value
+    }
+  }
+  return style
+})
+
+const handleChange = () => {
+  const val = currentValue.value
+  if (val !== undefined) {
+    emit('change', val)
+  }
+}
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .qs-radio {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  position: relative;
+  white-space: nowrap;
+  outline: none;
   cursor: pointer;
-  margin-right: 16px;
   font-size: 14px;
-  line-height: 1;
+  font-weight: 500;
+  color: var(--demo-text-color);
+  margin-right: 30px;
 
   &:last-child {
     margin-right: 0;
   }
 
-  &.is-disabled {
-    cursor: not-allowed;
-    color: var(--disabled-color, #c0c4cc);
+  &.is-bordered {
+    padding: 8px 15px;
+    border-radius: var(--demo-radius-base);
+    border: 1px solid var(--demo-border-color);
+    box-sizing: border-box;
 
-    .qs-radio__input {
-      cursor: not-allowed;
+    &.qs-radio--large {
+      padding: 10px 20px;
+      font-size: 16px;
 
       .qs-radio__inner {
-        background-color: var(--disabled-bg-color, #f5f7fa);
-        border-color: var(--disabled-border-color, #e4e7ed);
-
-        &::after {
-          background-color: var(--disabled-color, #c0c4cc);
-        }
+        width: 16px;
+        height: 16px;
       }
+    }
 
-      .qs-radio__original {
-        cursor: not-allowed;
+    &.qs-radio--small {
+      padding: 6px 12px;
+      font-size: 12px;
+
+      .qs-radio__inner {
+        width: 12px;
+        height: 12px;
       }
     }
   }
 
-  &.is-checked {
+  &.is-button {
+    margin-right: 0;
+    padding: 8px 15px;
+    border: 1px solid var(--demo-border-color);
+    border-left: 0;
+    background-color: var(--demo-bg-color);
+    color: var(--demo-text-color);
+    transition: all 0.3s;
+
+    &:first-child {
+      border-left: 1px solid var(--demo-border-color);
+      border-radius: var(--demo-radius-base) 0 0 var(--demo-radius-base);
+    }
+
+    &:last-child {
+      border-radius: 0 var(--demo-radius-base) var(--demo-radius-base) 0;
+    }
+
+    &.is-checked {
+      color: var(--demo-primary-color);
+      border-color: var(--demo-primary-color);
+      z-index: 1;
+
+      &.qs-radio--button-solid {
+        background-color: var(--demo-primary-color);
+        color: #fff;
+      }
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      color: var(--demo-text-color-disabled);
+      background-color: var(--demo-bg-color-light);
+      border-color: var(--demo-border-color);
+
+      &.is-checked {
+        color: var(--demo-text-color-disabled);
+        background-color: var(--demo-bg-color-light);
+        border-color: var(--demo-border-color);
+      }
+    }
+
+    &.qs-radio--large {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    &.qs-radio--small {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    color: var(--demo-text-color-disabled);
+
     .qs-radio__input {
+      cursor: not-allowed;
+
+      &.is-disabled {
+        .qs-radio__inner {
+          background-color: var(--demo-bg-color-light);
+          border-color: var(--demo-border-color);
+          cursor: not-allowed;
+
+          &::after {
+            background-color: var(--demo-text-color-disabled);
+          }
+        }
+      }
+    }
+  }
+
+  &__input {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    outline: none;
+    cursor: pointer;
+
+    &.is-checked {
       .qs-radio__inner {
-        border-color: var(--primary-color, #409eff);
-        background-color: var(--primary-color, #409eff);
+        border-color: var(--demo-primary-color);
+        background-color: var(--demo-primary-color);
 
         &::after {
           transform: translate(-50%, -50%) scale(1);
         }
       }
     }
-
-    .qs-radio__label {
-      color: var(--primary-color, #409eff);
-    }
   }
 
-  &--large {
-    font-size: 16px;
-
-    .qs-radio__input {
-      .qs-radio__inner {
-        width: 18px;
-        height: 18px;
-
-        &::after {
-          width: 6px;
-          height: 6px;
-        }
-      }
-    }
-  }
-
-  &--small {
-    font-size: 12px;
-
-    .qs-radio__input {
-      .qs-radio__inner {
-        width: 14px;
-        height: 14px;
-
-        &::after {
-          width: 4px;
-          height: 4px;
-        }
-      }
-    }
-  }
-}
-
-.qs-radio__input {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  outline: none;
-  position: relative;
-  cursor: pointer;
-
-  .qs-radio__original {
+  &__original {
     opacity: 0;
     outline: none;
     position: absolute;
@@ -177,34 +269,43 @@ export default defineComponent({
     margin: 0;
   }
 
-  .qs-radio__inner {
+  &__inner {
     position: relative;
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--border-color, #dcdfe6);
+    width: 14px;
+    height: 14px;
+    background-color: var(--demo-bg-color);
+    border: 1px solid var(--demo-border-color);
     border-radius: 50%;
-    background-color: var(--white, #fff);
     transition: all 0.3s;
 
     &::after {
-      content: '';
       position: absolute;
-      width: 5px;
-      height: 5px;
-      background-color: var(--white, #fff);
-      border-radius: 50%;
-      left: 50%;
+      content: '';
       top: 50%;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background-color: var(--demo-bg-color);
+      border-radius: 50%;
       transform: translate(-50%, -50%) scale(0);
       transition: transform 0.15s ease-in;
     }
   }
-}
 
-.qs-radio__label {
-  padding-left: 8px;
-  line-height: 1;
-  transition: color 0.3s;
+  &__label {
+    padding-left: 8px;
+    line-height: 1;
+  }
+
+  &__button-inner {
+    line-height: 1;
+  }
+
+  &:hover:not(.is-disabled) {
+    .qs-radio__inner {
+      border-color: var(--demo-primary-color);
+    }
+  }
 }
 </style> 

@@ -2,7 +2,6 @@ import type { Directive } from 'vue'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import xml from 'highlight.js/lib/languages/xml'
-import 'highlight.js/styles/github.css'
 
 // 注册需要的语言
 hljs.registerLanguage('javascript', javascript)

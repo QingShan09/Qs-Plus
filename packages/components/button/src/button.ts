@@ -1,6 +1,7 @@
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'text' | 'link'
 export type ButtonSize = 'large' | 'default' | 'small'
 export type ButtonShape = 'circle' | 'round'
+export type ButtonIconPosition = 'left' | 'right'
 
 export const buttonProps = {
   type: {
@@ -26,5 +27,30 @@ export const buttonProps = {
   icon: {
     type: String,
     default: ''
+  },
+  iconPosition: {
+    type: String as () => ButtonIconPosition,
+    default: 'left'
+  },
+  block: {
+    type: Boolean,
+    default: false
+  },
+  plain: {
+    type: Boolean,
+    default: false
+  },
+  color: {
+    type: String,
+    default: ''
+  },
+  gradient: {
+    type: Boolean,
+    default: false
   }
+} as const
+
+export const buttonGroupProps = {
+  size: buttonProps.size,
+  type: buttonProps.type
 } as const 

@@ -2,7 +2,9 @@
   <div
     :class="[
       'qs-radio-group',
-      size ? `qs-radio-group--${size}` : ''
+      {
+        'is-vertical': vertical
+      }
     ]"
     role="radiogroup"
   >
@@ -10,39 +12,49 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, provide, computed } from 'vue'
-import { radioGroupProps } from './radio'
+<script setup lang="ts">
+import { provide, computed } from 'vue'
+import { radioGroupProps, radioGroupEmits } from './radio-group'
 
-export default defineComponent({
-  name: 'QsRadioGroup',
-  props: radioGroupProps,
-  emits: ['update:modelValue', 'change'],
-  setup(props, { emit }) {
-    const changeEvent = (value: string | number | boolean) => {
-      emit('update:modelValue', value)
-      emit('change', value)
-    }
+defineOptions({
+  name: 'QsRadioGroup'
+})
 
-    provide('radioGroup', {
-      modelValue: computed(() => props.modelValue),
-      size: computed(() => props.size),
-      disabled: computed(() => props.disabled),
-      changeEvent
-    })
+const props = defineProps(radioGroupProps)
+const emit = defineEmits(radioGroupEmits)
 
-    return {
-      changeEvent
-    }
+const radioGroupValue = computed({
+  get() {
+    return props.modelValue
+  },
+  set(val) {
+    emit('update:modelValue', val)
+    emit('change', val)
   }
+})
+
+// 提供给子组件的数据
+provide('radioGroupKey', {
+  name: props.name,
+  modelValue: radioGroupValue,
+  size: computed(() => props.size),
+  disabled: computed(() => props.disabled),
+  textColor: computed(() => props.textColor),
+  fill: computed(() => props.fill),
+  buttonStyle: computed(() => props.buttonStyle)
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .qs-radio-group {
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
+
+  &.is-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 </style> 

@@ -1,51 +1,57 @@
+import type { ExtractPropTypes, PropType } from 'vue'
+
 export type RadioSize = 'large' | 'default' | 'small'
+export type RadioValueType = string | number | boolean
+export type RadioButtonStyle = 'outline' | 'solid'
 
 export const radioProps = {
   modelValue: {
-    type: [String, Number, Boolean],
-    default: ''
+    type: [String, Number, Boolean] as unknown as PropType<RadioValueType>,
+    default: undefined
   },
-  value: {
-    type: [String, Number, Boolean],
-    default: ''
+  label: {
+    type: [String, Number, Boolean] as unknown as PropType<RadioValueType>,
+    default: undefined
   },
   disabled: {
     type: Boolean,
     default: false
   },
   size: {
-    type: String as () => RadioSize,
+    type: String as unknown as PropType<RadioSize>,
     default: 'default'
+  },
+  name: {
+    type: String,
+    default: undefined
+  },
+  border: {
+    type: Boolean,
+    default: false
+  },
+  button: {
+    type: Boolean,
+    default: false
+  },
+  buttonStyle: {
+    type: String as unknown as PropType<RadioButtonStyle>,
+    default: 'outline'
+  },
+  textColor: {
+    type: String,
+    default: undefined
+  },
+  fill: {
+    type: String,
+    default: undefined
   }
 } as const
 
-export const radioGroupProps = {
-  modelValue: {
-    type: [String, Number, Boolean],
-    default: ''
-  },
-  size: {
-    type: String as () => RadioSize,
-    default: 'default'
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  }
-} as const
-
-export const radioButtonProps = {
-  value: {
-    type: [String, Number, Boolean],
-    default: ''
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  }
-} as const
+export type RadioProps = ExtractPropTypes<typeof radioProps>
 
 export const radioEmits = {
-  'update:modelValue': (val: string | number | boolean) => true,
-  'change': (val: string | number | boolean) => true
-} 
+  'update:modelValue': (value: RadioValueType) => true,
+  'change': (value: RadioValueType) => true
+}
+
+export type RadioEmits = typeof radioEmits 
