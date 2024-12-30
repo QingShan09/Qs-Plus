@@ -17,6 +17,7 @@
 </p>
 
 <p align="center">一个基于 Vue 3 的现代化轻量级组件库</p>
+在线预览: [QS Plus 预览](http://qingshan.ink/qsplus/#/)
 
 ## ✨ 特性
 
@@ -73,7 +74,7 @@ app.mount('#app')
       <td>常用的操作按钮</td>
       <td>
         <ul>
-          <li>支��多种类型：primary、success、warning、danger</li>
+          <li>支持多种类型：primary、success、warning、danger</li>
           <li>支持图标按钮和文字按钮</li>
           <li>可自定义大小和形状</li>
           <li>支持加载状态和禁用状态</li>
@@ -305,7 +306,7 @@ app.mount('#app')
 
 ## 🎨 主题定制
 
-QS Plus 提供了灵活的主题配置，你可以通过修改 CSS 变量来自定义���题：
+QS Plus 提供了灵活的主题配置，你可以通过修改 CSS 变量来自定义主题：
 
 ```css
 :root {
@@ -336,6 +337,7 @@ npm run build
 ## 📄 文档
 
 访问 [QS Plus 文档](https://github.com/QingShan09/Qs-Plus) 查看详细文档。
+
 
 ## 🤝 贡献
 
